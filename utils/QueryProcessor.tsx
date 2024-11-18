@@ -12,10 +12,15 @@ export default function QueryProcessor(query: string): string {
 		// TODO actualiza el caso de prueba correspondiente en __tests__
 		return ("TU USB ID: 17-10303");
 	}
+	
 	if (query.toLowerCase().includes("name")) {
-		// TODO añade tu USB ID a continuación
-		// TODO actualiza el caso de prueba correspondiente en __tests__
 		return ("Junior");
 	}
+	
+	if (query.toLowerCase().includes("largest")) {
+		const numbers = query.match(/\d+/g)?.map(Number) || [];
+		return String(Math.max(...numbers));	
+	}
+
 	return "";
 }
