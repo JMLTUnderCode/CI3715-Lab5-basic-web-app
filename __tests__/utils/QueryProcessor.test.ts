@@ -51,6 +51,14 @@ describe("QueryProcessor", () => {
     	));
     });
 
+	test('should return minus of numbers', () => {
+        const query = "What is 60 minus 88?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"-28"
+    	));
+    });
+
 	test('should return multiplication of numbers', () => {
         const query = "What is 50 multiplied by 28?";
         const response: string = QueryProcessor(query);
