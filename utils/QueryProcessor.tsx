@@ -27,5 +27,10 @@ export default function QueryProcessor(query: string): string {
 		return String(numbers.reduce((a, b) => a + b, 0));
 	}
 
+	if (query.toLowerCase().includes("multiplied")) {
+		const numbers = query.match(/\d+/g)?.map(Number) || [];
+		return String(numbers.reduce((a, b) => a * b, 1));
+	}
+
 	return "";
 }

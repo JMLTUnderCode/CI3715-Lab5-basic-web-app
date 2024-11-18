@@ -51,4 +51,12 @@ describe("QueryProcessor", () => {
     	));
     });
 
+	test('should return multiplication of numbers', () => {
+        const query = "What is 50 multiplied by 28?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"1400"
+    	));
+    });
+1
 });
