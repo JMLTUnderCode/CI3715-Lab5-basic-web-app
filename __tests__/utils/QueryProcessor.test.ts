@@ -83,4 +83,12 @@ describe("QueryProcessor", () => {
     	));
     });
 
+	test('should return power of numbers', () => {
+        const query = "What is 36 to the power of 34?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"82089011515213367907186323883068205046425814529212416"
+    	));
+    });
+
 });

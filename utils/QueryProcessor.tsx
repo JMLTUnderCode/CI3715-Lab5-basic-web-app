@@ -76,5 +76,44 @@ export default function QueryProcessor(query: string): string {
 		return primes.length > 0 ? primes.join(", ") : "No primes found";
 	}
 
+	// Función para multiplicar dos números representados como strings
+	function multiply(num1: string, num2: string): string {
+		const result = Array(num1.length + num2.length).fill(0);
+
+		for (let i = num1.length - 1; i >= 0; i--) {
+			for (let j = num2.length - 1; j >= 0; j--) {
+				const mul = (num1[i].charCodeAt(0) - '0'.charCodeAt(0)) * (num2[j].charCodeAt(0) - '0'.charCodeAt(0));
+				const sum = mul + result[i + j + 1];
+
+				result[i + j + 1] = sum % 10; // Guardar el dígito
+				result[i + j] += Math.floor(sum / 10); // Llevar la decena
+			}
+		}
+
+		// Convertir el resultado a string
+		return result.join('').replace(/^0+/, '') || '0'; // Eliminar ceros a la izquierda
+	}
+
+	// Función para calcular la potencia utilizando multiplicación de strings
+	function power(base: string, exponent: number): string {
+		let result = "1"; // Inicializar resultado como "1"
+		for (let i = 0; i < exponent; i++) {
+			result = multiply(result, base); // Multiplicar el resultado por la base
+		}
+		return result; // Retornar el resultado
+	}
+
+	if (query.toLowerCase().includes("power")) {
+		const numbers = query.match(/\d+/g);
+		if (numbers && numbers.length === 2) {
+			const base = numbers[0]; // Mantener como string
+			const exponent = parseInt(numbers[1]); // Exponente se convierte a Number
+
+			// Calcular la potencia usando una función auxiliar
+			const result = power(base, exponent);
+			return result; // Retornar el resultado como string
+		}
+	}
+
 	return "";
 }
