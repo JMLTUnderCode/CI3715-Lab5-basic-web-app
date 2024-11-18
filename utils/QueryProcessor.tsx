@@ -32,5 +32,28 @@ export default function QueryProcessor(query: string): string {
 		return String(numbers.reduce((a, b) => a * b, 1));
 	}
 
+	function isPerfectSquare(num: number) {
+		const sqrt = Math.sqrt(num);
+		return sqrt * sqrt === num;
+	}
+
+	function isPerfectCube(num: number) {
+		const cbrt = Math.cbrt(num);
+		return cbrt * cbrt * cbrt === num;
+	}
+
+	if (query.toLowerCase().includes("square and a cube")) {
+		const numbers = query.match(/\d+/g)?.map(Number) || [];
+		const result = [];
+	
+		for (const number of numbers) {
+			if (isPerfectSquare(number) && isPerfectCube(number)) {
+				result.push(number);
+			}
+		}
+	
+		return result.length > 0 ? result.join(", ") : ""; // Retorna los números como un string separado por coma y espacio
+	}
+
 	return "";
 }
