@@ -75,4 +75,12 @@ describe("QueryProcessor", () => {
     	));
     });
 
+	test('should return square and a cube of numbers', () => {
+        const query = "Which of the following numbers are primes: 29, 71, 7, 68, 45?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"29, 7w1, 7"
+    	));
+    });
+
 });

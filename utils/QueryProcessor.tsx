@@ -50,14 +50,32 @@ export default function QueryProcessor(query: string): string {
 	if (query.toLowerCase().includes("square and a cube")) {
 		const numbers = query.match(/\d+/g)?.map(Number) || [];
 		const result = [];
-	
+
 		for (const number of numbers) {
 			if (isPerfectSquare(number) && isPerfectCube(number)) {
 				result.push(number);
 			}
 		}
-	
+
 		return result.length > 0 ? result.join(", ") : ""; // Retorna los números como un string separado por coma y espacio
+	}
+
+	// Función para verificar si un número es primo
+	function isPrime(num: number): boolean {
+		if (num <= 1) return false;
+		for (let i = 2; i <= Math.sqrt(num); i++) {
+			if (num % i === 0) return false;
+		}
+		return true;
+	}
+
+	if (query.toLowerCase().includes("primes")) {
+		// Extraer los números del query
+		const numbers = query.match(/\d+/g)?.map(Number) || [];
+		// Filtrar los números primos
+		const primes = numbers.filter(isPrime);
+		// Retornar los números primos como un string separado por coma
+		return primes.length > 0 ? primes.join(", ") : "No primes found";
 	}
 
 	return "";
