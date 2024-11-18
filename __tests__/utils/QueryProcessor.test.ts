@@ -43,4 +43,12 @@ describe("QueryProcessor", () => {
     	));
     });
 
+	test('should return addition of numbers', () => {
+        const query = "What is 46 plus 76?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"122"
+    	));
+    });
+
 });
