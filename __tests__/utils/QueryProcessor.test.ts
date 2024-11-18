@@ -68,10 +68,10 @@ describe("QueryProcessor", () => {
     });
 
 	test('should return square and a cube of numbers', () => {
-        const query = "Which of the following numbers is both a square and a cube: 293, 3364, 4205, 729, 64, 3059, 3047?";
+        const query = "Which of the following numbers is both a square and a cube: 39, 838, 1764, 1055, 4096, 729, 4309?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-		"293, 3364, 729, 64, 3047"
+		"4096, 729"
     	));
     });
 
@@ -79,7 +79,7 @@ describe("QueryProcessor", () => {
         const query = "Which of the following numbers are primes: 29, 71, 7, 68, 45?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-		"29, 7w1, 7"
+		"29, 71, 7"
     	));
     });
 

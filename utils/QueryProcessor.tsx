@@ -37,27 +37,25 @@ export default function QueryProcessor(query: string): string {
 		return String(numbers.reduce((a, b) => a * b, 1));
 	}
 
-	function isPerfectSquare(num: number) {
+	// Función para verificar si un número es un cuadrado perfecto
+	function isPerfectSquare(num: number): boolean {
 		const sqrt = Math.sqrt(num);
-		return sqrt * sqrt === num;
+		return Number.isInteger(sqrt) && sqrt * sqrt === num; // Verifica que sqrt sea un entero
 	}
 
-	function isPerfectCube(num: number) {
+	// Función para verificar si un número es un cubo perfecto
+	function isPerfectCube(num: number): boolean {
 		const cbrt = Math.cbrt(num);
-		return cbrt * cbrt * cbrt === num;
+		return Number.isInteger(cbrt) && cbrt * cbrt * cbrt === num; // Verifica que cbrt sea un entero
 	}
 
-	if (query.toLowerCase().includes("square and a cube")) {
+	if (query.toLowerCase().includes("both a square and a cube")) {
+		// Extraer los números del query
 		const numbers = query.match(/\d+/g)?.map(Number) || [];
-		const result = [];
-
-		for (const number of numbers) {
-			if (isPerfectSquare(number) && isPerfectCube(number)) {
-				result.push(number);
-			}
-		}
-
-		return result.length > 0 ? result.join(", ") : ""; // Retorna los números como un string separado por coma y espacio
+		// Filtrar los números que son tanto cuadrados como cubos perfectos
+		const results = numbers.filter(num => isPerfectSquare(num) && isPerfectCube(num));
+		// Retornar los números como un string separado por coma
+		return results.length > 0 ? results.join(", ") : "No numbers found";
 	}
 
 	// Función para verificar si un número es primo
